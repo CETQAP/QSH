@@ -1,0 +1,31 @@
+from qiskit import QuantumCircuit
+
+def create_qsh_circuit():
+    # Define the number of qubits
+    num_qubits = 4
+    qc = QuantumCircuit(num_qubits)
+    
+    # Apply Hadamard gates to create superposition
+    for qubit in range(num_qubits):
+        qc.h(qubit)
+    
+    # Apply controlled-Z gates to introduce harmonic entanglement
+    qc.cz(0, 1)
+    qc.cz(1, 2)
+    qc.cz(2, 3)
+    
+    # Apply rotation gates to introduce phase shifts
+    qc.rx(3.14/4, 0)
+    qc.ry(3.14/4, 1)
+    qc.rz(3.14/4, 2)
+    qc.rx(3.14/4, 3)
+    
+    # Apply another layer of entanglement
+    qc.cx(0, 2)
+    qc.cx(1, 3)
+    
+    return qc
+
+# Create the QSH circuit and draw it
+qsh_circuit = create_qsh_circuit()
+qsh_circuit.draw('mpl')
